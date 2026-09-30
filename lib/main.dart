@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihanfluter/pages/calculator_page.dart';
+
+import 'package:latihanfluter/routes.dart'; // sesuaikan dengan path tempat routes.dart disimpan
 
 
 
@@ -14,14 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Kalkulator App',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.blueAccent,
-      ),
-      home: CalculatorPage(),
-    );
+      title: "belajar pluter pplg3",
+      initialRoute: Routes.registration,
+      getPages: Routes.myPages,
+     
+      );
+    
+    
   }
 }
 
