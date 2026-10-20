@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihanfluter/models/produk_model.dart';
-import 'package:latihanfluter/components/steam_gradient_button.dart'; // Pake tombol gradient yang udah kamu bikin
+import 'package:latihanfluter/components/steam_gradient_button.dart';
+import 'package:latihanfluter/controller/detail_produk_controller.dart'; // Import controller baru
 
 class DetailProdukPage extends StatelessWidget {
   DetailProdukPage({super.key});
 
-  // Ambil data yang dikirim dari halaman List
-  final ProdukModel produk = Get.arguments; 
+  
+  final controller = Get.put(DetailProdukController()); 
 
   @override
   Widget build(BuildContext context) {
+    
+    final produk = controller.produk; 
+
     return Scaffold(
       backgroundColor: const Color(0xFF1B2838),
       appBar: AppBar(
@@ -47,7 +50,6 @@ class DetailProdukPage extends StatelessWidget {
                   const SizedBox(height: 30),
                   Text(produk.harga, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
                   
-                  // Pakai button buatanmu yang ada di file steam_gradient_button.dart
                   SteamGradientButton(
                     text: "Add to Cart",
                     onPressed: () {

@@ -11,7 +11,7 @@ class ListProdukPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1B2838), // Background Steam
+      backgroundColor: const Color(0xFF1B2838), 
       appBar: AppBar(
         title: const Text("Store", style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF171A21),
@@ -30,12 +30,12 @@ class ListProdukPage extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: InkWell(
                 onTap: () {
-                  // Pindah ke detail page sambil bawa argument
+                
                   Get.to(() => DetailProdukPage(), arguments: produk);
                 },
                 child: Row(
                   children: [
-                    // Gambar Produk
+                   
                     Image.network(
                       produk.imageUrl,
                       width: 120,
@@ -51,7 +51,7 @@ class ListProdukPage extends StatelessWidget {
                       },
                     ),
                     const SizedBox(width: 12),
-                    // Info Produk
+                  
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
