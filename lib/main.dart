@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:latihanfluter/routes.dart'; // sesuaikan dengan path tempat routes.dart disimpan
-
-
+import 'routes.dart'; // Import routes.dart kamu
 
 void main() {
   runApp(const MyApp());
@@ -15,13 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "belajar pluter pplg3",
-      initialRoute: Routes.listProduk,
+      debugShowCheckedModeBanner: false,
+      title: 'Steam App',
+      theme: ThemeData.dark(),
+      initialRoute: Routes.menuDrawer, 
       getPages: Routes.myPages,
-     
-      );
-    
-    
+    );
   }
 }
-

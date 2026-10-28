@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latihanfluter/components/steam_gradient_button.dart';
-import 'package:latihanfluter/controller/detail_produk_controller.dart'; // Import controller baru
+import 'package:latihanfluter/controller/detail_produk_controller.dart'; 
 
 class DetailProdukPage extends StatelessWidget {
   DetailProdukPage({super.key});
