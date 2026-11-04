@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:latihanfluter/controller/profile_controller.dart';
+import '../components/stat_item.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Inject atau panggil ProfileController
-    final ProfileController profileCtr = Get.put(ProfileController());
-
-    // Palette warna ala Steam
     const backgroundColor = Color(0xFF171A21);
     const cardColor = Color(0xFF1B2838);
     const accentBlue = Color(0xFF66C0F4);
@@ -21,24 +16,26 @@ class ProfilePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // --- HEADER / BANNER & AVATAR SECTION ---
+            //  HEADER / BANNER AVATAR SECTION 
             Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
-                // Banner Background
                 Container(
                   height: 140,
                   width: double.infinity,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0xFF000000), Color(0xFF171A21), Color(0xFF2A475E)],
+                      colors: [
+                        Color(0xFF000000),
+                        Color(0xFF171A21),
+                        Color(0xFF2A475E),
+                      ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                   ),
                 ),
-                // Foto Profil dengan Border (Avatar Frame ala Steam)
                 Positioned(
                   bottom: -40,
                   child: Container(
@@ -67,63 +64,62 @@ class ProfilePage extends StatelessWidget {
 
             const SizedBox(height: 50),
 
-            // --- NAMA, LEVEL & STATUS ---
-            Obx(() => Column(
+            // --- NAMA, LEVEL & STATUS (HARDCODED) ---
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          profileCtr.username.value,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        // Steam Level Badge Widget
-                        Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: levelColor, width: 2),
-                            color: cardColor,
-                          ),
-                          child: Text(
-                            '${profileCtr.level.value}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      profileCtr.status.value,
-                      style: const TextStyle(
-                        color: accentBlue,
-                        fontWeight: FontWeight.w600,
+                    const Text(
+                      'Zero_Claw',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Text(
-                        profileCtr.bio.value,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.white70, fontSize: 13),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: levelColor, width: 2),
+                        color: cardColor,
+                      ),
+                      child: const Text(
+                        '100',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ],
-                )),
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Online',
+                  style: TextStyle(
+                    color: accentBlue,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Text(
+                    'aku mau pc gratis',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white70, fontSize: 13),
+                  ),
+                ),
+              ],
+            ),
 
             const SizedBox(height: 24),
 
-            // --- STATS SHOWCASE (Games, Badges, Hours) ---
+            // stats showcase
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
@@ -133,20 +129,32 @@ class ProfilePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.white10),
                 ),
-                child: Obx(() => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _buildStatItem('Games', '${profileCtr.gamesOwned.value}', accentBlue),
-                        _buildStatItem('Badges', '${profileCtr.badgeCount.value}', accentBlue),
-                        _buildStatItem('Playtime', profileCtr.totalPlaytime.value, accentBlue),
-                      ],
-                    )),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    StatItem(
+                      label: 'Games',
+                      value: '128',
+                      color: accentBlue,
+                    ),
+                    StatItem(
+                      label: 'Badges',
+                      value: '35',
+                      color: accentBlue,
+                    ),
+                    StatItem(
+                      label: 'Playtime',
+                      value: '1,420 hrs',
+                      color: accentBlue,
+                    ),
+                  ],
+                ),
               ),
             ),
 
             const SizedBox(height: 16),
 
-            // --- BADGES SHOWCASE SECTION ---
+            // badges (HARDCODED) 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
@@ -159,8 +167,8 @@ class ProfilePage extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'Featured Badges',
                       style: TextStyle(
                         color: Colors.white,
@@ -168,21 +176,33 @@ class ProfilePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Obx(() => Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: profileCtr.badges
-                              .map((badge) => Chip(
-                                    backgroundColor: const Color(0xFF2A475E),
-                                    side: BorderSide.none,
-                                    label: Text(
-                                      badge,
-                                      style: const TextStyle(color: Colors.white, fontSize: 12),
-                                    ),
-                                  ))
-                              .toList(),
-                        )),
+                    SizedBox(height: 12),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        Chip(
+                          backgroundColor: Color.fromARGB(255, 7, 0, 134),
+                          side: BorderSide.none,
+                          label: Text('🏆 Years of Service', style: TextStyle(color: Colors.white, fontSize: 12)),
+                        ),
+                        Chip(
+                          backgroundColor: Color(0xFF2A475E),
+                          side: BorderSide.none,
+                          label: Text('🎮 Collector 100+', style: TextStyle(color: Colors.white, fontSize: 12)),
+                        ),
+                        Chip(
+                          backgroundColor: Color(0xFF2A475E),
+                          side: BorderSide.none,
+                          label: Text('⚡ Summer Sale 2026', style: TextStyle(color: Colors.white, fontSize: 12)),
+                        ),
+                        Chip(
+                          backgroundColor: Color(0xFF2A475E),
+                          side: BorderSide.none,
+                          label: Text('🛠️ Community Pillar', style: TextStyle(color: Colors.white, fontSize: 12)),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -192,27 +212,6 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  // Helper widget buat nampilin item statistik
-  Widget _buildStatItem(String label, String value, Color color) {
-    return Column(
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            color: color,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: const TextStyle(color: Colors.white54, fontSize: 12),
-        ),
-      ],
     );
   }
 }

@@ -7,7 +7,7 @@ class MenuDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Panggil controller drawer
+   
     final MenuDrawerController drawerCtr = Get.find<MenuDrawerController>();
 
     const backgroundColor = Color(0xFF171A21);
@@ -19,7 +19,7 @@ class MenuDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          // Header Drawer Steam Style
+          // Header  Steam Style
           UserAccountsDrawerHeader(
             decoration: const BoxDecoration(
               color: cardColor,
@@ -31,7 +31,7 @@ class MenuDrawer extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Image.network(
-                'https://avatars.githubusercontent.com/u/1000000', // Atau Icon/Image lokal
+                'https://avatars.githubusercontent.com/u/1000000', 
                 errorBuilder: (context, error, stackTrace) =>
                     const Icon(Icons.person, color: Colors.white, size: 40),
               ),

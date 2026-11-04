@@ -12,7 +12,7 @@ class MenuDrawerPage extends StatelessWidget {
   // Inject controller navigasi
   final MenuDrawerController drawerCtr = Get.put(MenuDrawerController());
 
-  // List halaman yang direuse sesuai instruksi
+  
   final List<Widget> pages = [
     HomePage(),
     HistoryPage(),
@@ -24,7 +24,7 @@ class MenuDrawerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          // 1. TAMBAHKAN APPBAR (Menampilkan ikon garis 3 secara otomatis)
+          // 1.  APPBAR (nampilin burger/garis 3)
           appBar: AppBar(
             backgroundColor: const Color(0xFF171A21),
             iconTheme: const IconThemeData(color: Colors.white),
@@ -34,13 +34,13 @@ class MenuDrawerPage extends StatelessWidget {
             ),
           ),
 
-          // 2. PASANG DRAWER DI SINI (Menu samping yang muncul pas garis 3 diklik)
+          //(Menu samping yang muncul pas garis 3 diklik)
           drawer: const MenuDrawer(),
 
-          // 3. BODY BERUBAH SESUAI INDEX
+          //perubahan body based by index
           body: pages[drawerCtr.selectedIndex.value],
           
-          // PASTIKAN TIDAK ADA bottomNavigationBar DI SINI!
+         
         ));
   }
 }

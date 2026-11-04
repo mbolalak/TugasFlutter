@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'routes.dart'; // Import routes.dart kamu
+import 'routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Steam App',
       theme: ThemeData.dark(),
-      initialRoute: Routes.menuDrawer, 
+      initialRoute: Routes.loginClone,
       getPages: Routes.myPages,
     );
   }

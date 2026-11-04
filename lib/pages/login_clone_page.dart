@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:latihanfluter/components/custom_header.dart';
 import 'package:latihanfluter/components/custom_input.dart';
 import 'package:latihanfluter/components/steam_gradient_button.dart';
+import 'package:latihanfluter/controller/login_clone_controller.dart';
 
 class LoginClonePage extends StatelessWidget {
-  const LoginClonePage({super.key});
+  LoginClonePage({super.key});
+
+  final controller = Get.put(LoginCloneController());
 
   @override
   Widget build(BuildContext context) {
-
-    final TextEditingController txtUsername = TextEditingController();
-    final TextEditingController txtPassword = TextEditingController();
-
     return Scaffold(
       backgroundColor: const Color(0xFF181A21),
       body: Column(
@@ -22,22 +22,28 @@ class LoginClonePage extends StatelessWidget {
           // Input Username
           CustomInput(
             label: "Steam account name",
-            controller: txtUsername,
+            controller: controller.txtUsername,
           ),
 
           // Input Password
           CustomInput(
             label: "Password",
-            controller: txtPassword,
+            controller: controller.txtPassword,
             obscureText: true,
           ),
 
-          // Tombol Sign In
-          SteamGradientButton(
-            text: "Sign In",
-            onPressed: () {
-              // Action login
-            },
+          // Kondisi Loading atau Tombol Sign In
+          Obx(
+            () => controller.isLoading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SteamGradientButton(
+                    text: "Sign In",
+                    onPressed: () {
+                      controller.login();
+                    },
+                  ),
           ),
 
           // Text Forgot Password
