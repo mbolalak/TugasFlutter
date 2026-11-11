@@ -50,4 +50,7 @@ class SteamModel {
   // Getter helper format harga
   String get formattedSalePrice => "\$$salePrice";
   String get formattedNormalPrice => "\$$normalPrice";
+
+  // Getter helper format gabungan sale & normal (misal: "$1.99 (Normal: $19.99)")
+  String get formattedPriceWithNormal => "$formattedSalePrice (Normal: $formattedNormalPrice)";
 }

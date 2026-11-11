@@ -121,7 +121,7 @@ class ListProdukPage extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        "${produk.formattedSalePrice} (Normal: ${produk.formattedNormalPrice})",
+                                        produk.formattedPriceWithNormal,
                                         style: const TextStyle(
                                             color: Color(0xFF66C0F4)),
                                       ),
