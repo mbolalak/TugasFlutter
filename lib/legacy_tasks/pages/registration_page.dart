@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihanfluter/components/custom_gender_picker.dart';
 import 'package:latihanfluter/components/custom_header.dart'; // Import CustomHeader
 import 'package:latihanfluter/components/custom_input.dart';
 import 'package:latihanfluter/components/steam_gradient_button.dart';
-import 'package:latihanfluter/controller/registration_controller.dart';
+import 'package:latihanfluter/legacy_tasks/components/custom_gender_picker.dart';
+import 'package:latihanfluter/legacy_tasks/controller/registration_controller.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});

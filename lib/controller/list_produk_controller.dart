@@ -1,151 +1,40 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:latihanfluter/models/produk_model.dart';
+import 'package:http/http.dart' as http;
+import '../models/steam_model.dart';
 
 class ListProdukController extends GetxController {
-  List<ProdukModel> listProduk = [
-    ProdukModel(
-      namaProduk: "Baldur's Gate 3", 
-      harga: "Rp 879.999",
-      description: "Game RPG epik dengan jalan cerita yang WUEEEEEEEEEDDDDYAAAAAAAAAAAAAAN banget.",
-      reviews: "Overwhelmingly Positive",
-      rating: "10/10",
-      namatoko: "Larian Studios",
+  var isLoading = false.obs;
 
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg", 
-    ),
+  // List yang menampung Model Data (bukan JSON Array mentah)
+  var listProduk = <SteamModel>[].obs;
 
-    ProdukModel(
-      namaProduk: "Coconut Strike 2", 
-      harga: "Rp 250.000",
-      description: "FPS game, with VAC (Valve Allow Cheat)",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Volvo",
+  @override
+  void onInit() {
+    super.onInit();
+    fetchProduk(); // Otomatis hit API saat halaman dibuka
+  }
 
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "Steins Gate", 
-      harga: "Rp 130.000",
-      description: "Game Novel",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Mages",
+  // method hit API GET (pakai Future<void> agar bisa di-await oleh RefreshIndicator)
+  Future<void> fetchProduk() async {
+    try {
+      isLoading.value = true; // sebagai tanda di page muncul loading widget
+      final url = Uri.parse(
+          "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15");
 
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/412830/header.jpg",
-    ),
-     ProdukModel(
-      namaProduk: "Rainbow Six Siege", 
-      harga: "RP Free",
-      description: "Tactical Shooter Game",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Ubi lembut",
+      final response = await http.get(url);
 
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/header.jpg",
-    ),
-      ProdukModel(
-      namaProduk: "Alan Tangi", 
-      harga: "RP 130.000",
-      description: "Game Story horror",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Remedy Entertaiment",
-
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/108710/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "DOTA", 
-      harga: "RP Free",
-      description: "Mirip ML",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Volvo",
-
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "Sea of Thieves",
-      harga: "RP 200.000",
-      description: "RPG open world",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Rare ltd",
-
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172620/header.jpg",
-    ),
-  ].obs; 
-
-  // Method dummy buat fungsionalitas Pull Refresh
- Future<void> refreshData() async {
-  // Simulasi nunggu loading 1 detik
-  await Future.delayed(const Duration(seconds: 1));
-
-  
-  listProduk.assignAll([
-    ProdukModel(
-      namaProduk: "Baldur's Gate 3", 
-      harga: "Rp 879.999",
-      description: "Game RPG epik dengan jalan cerita yang WUEEEEEEEEEDDDDYAAAAAAAAAAAAAAN banget.",
-      reviews: "Overwhelmingly Positive",
-      rating: "10/10",
-      namatoko: "Larian Studios",
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg", 
-    ),
-    ProdukModel(
-      namaProduk: "Coconut Strike 2", 
-      harga: "Rp 250.000",
-      description: "FPS game, with VAC (Valve Allow Cheat)",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Volvo",
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "Steins Gate", 
-      harga: "Rp 130.000",
-      description: "Game Novel",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Mages",
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/412830/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "Rainbow Six Siege", 
-      harga: "RP Free",
-      description: "Tactical Shooter Game",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Ubi lembut",
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "Alan Tangi", 
-      harga: "RP 130.000",
-      description: "Game Story horror",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Remedy Entertaiment",
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/108710/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "DOTA", 
-      harga: "RP Free",
-      description: "Mirip ML",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Volvo",
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/header.jpg",
-    ),
-    ProdukModel(
-      namaProduk: "Sea of Thieves",
-      harga: "RP 200.000",
-      description: "RPG open world",
-      reviews: "possitive",
-      rating: "10/10",
-      namatoko: "Rare ltd",
-      imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172620/header.jpg",
-    ),
-  ]);
-}
+      if (response.statusCode == 200) {
+        // convert json array ke List<SteamModel> dan masukkan ke RxList via assignAll
+        listProduk.assignAll(steamModelFromJson(response.body));
+      } else {
+        Get.snackbar("gagal", "cek internet connection");
+      }
+    } catch (e) {
+      Get.snackbar("gagal", e.toString());
+      debugPrint("error nya: $e");
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }

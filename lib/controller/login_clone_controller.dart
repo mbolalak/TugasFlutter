@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../routes.dart';
+import 'package:latihanfluter/models/login_model.dart';
 
 class LoginCloneController extends GetxController {
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
 
   var isLoading = false.obs;
+  var loginModel = Rxn<LoginModelDart>();
 
   // method hit API
   void login() async {

@@ -16,23 +16,22 @@ class LoginClonePage extends StatelessWidget {
       backgroundColor: const Color(0xFF181A21),
       body: Column(
         children: [
-          // Header
+          
           const CustomHeader(title: "SIGN INN"),
 
-          // Input Username
           CustomInput(
             label: "Steam account name",
             controller: controller.txtUsername,
           ),
 
-          // Input Password
+          
           CustomInput(
             label: "Password",
             controller: controller.txtPassword,
             obscureText: true,
           ),
 
-          // Kondisi Loading atau Tombol Sign In
+        
           Obx(
             () => controller.isLoading.value
                 ? const Center(
@@ -46,7 +45,7 @@ class LoginClonePage extends StatelessWidget {
                   ),
           ),
 
-          // Text Forgot Password
+          
           Container(
             margin: const EdgeInsets.all(10),
             child: const Text(

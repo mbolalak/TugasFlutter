@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihanfluter/components/custom_button.dart';
 import 'package:latihanfluter/components/custom_textfield.dart';
-import 'package:latihanfluter/controller/calculator_controller.dart';
+import 'package:latihanfluter/legacy_tasks/components/custom_button.dart';
+import 'package:latihanfluter/legacy_tasks/controller/calculator_controller.dart';
 
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});

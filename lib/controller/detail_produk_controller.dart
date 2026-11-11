@@ -1,7 +1,6 @@
-import 'package:get/get.dart'; 
-import 'package:latihanfluter/models/produk_model.dart';
+import 'package:get/get.dart';
+import 'package:latihanfluter/models/steam_model.dart';
 
 class DetailProdukController extends GetxController {
-  
-  final ProdukModel produk = Get.arguments;
+  final SteamModel produk = Get.arguments;
 }

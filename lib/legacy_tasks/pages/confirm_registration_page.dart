@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latihanfluter/components/custom_header.dart';
-import 'package:latihanfluter/components/custom_text_display.dart';
 import 'package:latihanfluter/components/steam_gradient_button.dart';
-import 'package:latihanfluter/controller/confirm_registration_controller.dart';
+import 'package:latihanfluter/legacy_tasks/components/custom_text_display.dart';
+import 'package:latihanfluter/legacy_tasks/controller/confirm_registration_controller.dart';
 
 class ConfirmRegistrationPage extends StatelessWidget {
   const ConfirmRegistrationPage({super.key});
