@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihanfluter/controller/main_menu_controller.dart';
+import 'package:latihanfluter/legacy_tasks/controller/main_menu_controller.dart';
 
 class MainMenuPage extends StatelessWidget {
   MainMenuPage({super.key});
